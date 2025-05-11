@@ -27,3 +27,5 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
 # Verify
 docker --version
+
+echo "Docker install successfully !!!!!!!!!!!!!!!!!"
