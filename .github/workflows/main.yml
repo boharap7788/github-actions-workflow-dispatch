@@ -13,8 +13,9 @@ jobs:
 
       - name: Run Docker install script
         run: bash install.sh
+
       - name: Docker install successfully
-        run: echo " Docker Install !!!!!!!!!!!!!!!! "
+        run: echo "Docker Install !!!!!!!!!!!!!!!! "
         
       - name: Build and run NGINX
         run: |
