@@ -15,4 +15,4 @@ jobs:
         run: chmod +x scripts/install.sh
 
       - name: Run Docker install script
-        run: ./scripts/install.sh
+        run: ./install.sh
