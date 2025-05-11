@@ -11,8 +11,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Make script executable
-        run: chmod +x install.sh  # Use +x instead of 777 for security
-
       - name: Run Docker install script
         run: bash install.sh
