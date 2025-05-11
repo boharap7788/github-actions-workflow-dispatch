@@ -1,32 +1,18 @@
-# .github/workflows/manual-docker-install.yml
-name: Manual Docker Install
+name: Manual Docker Install with Script
 
 on:
-  workflow_dispatch:  # Allows manual triggering from GitHub UI
+  workflow_dispatch:
 
 jobs:
   install-docker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            ca-certificates \
-            curl \
-            gnupg \
-            lsb-release
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-          sudo mkdir -p /etc/apt/keyrings
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+      - name: Make script executable
+        run: chmod +x scripts/install.sh
 
-          echo \
-            "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-            $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-          sudo apt-get update
-          sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-      - name: Verify Docker Installation
-        run: docker --version
+      - name: Run Docker install script
+        run: ./scripts/install.sh
